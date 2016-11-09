@@ -4,12 +4,10 @@ Set Up Instructions:
 
  We can can setup the securepush and securefetch operations in two different ways.
  
-1. Git custom commands
-
+1.Git custom commands
 To implement these custom commands, users must name these scripts as git-<command name> and they have to add the path of these scripts in their local PATH environment variable.
 
-2. Git alias
-
+2.Git alias
 The users can create a Git alias to our git-securefetch and git-securepush bash scripts using
 the following commands.
 
