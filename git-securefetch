@@ -1,5 +1,11 @@
 #!/bin/bash
 
+
+# Update this variable value with your GPG Key
+GPG_KEY="5FC58D0B"
+
+
+
 #************** Functions ***********************************
 
 #This function creates the bsl entries related to the fetch operation
@@ -143,7 +149,7 @@ function bsl_verify {
 
 	    if [ -f $LAST_PUSH_ENTRY ]
 	    then
-	    	gpg2 --default-key 5FC58D0B --verify $LAST_PUSH_ENTRY &> /dev/null 
+	    	gpg2 --default-key $GPG_KEY --verify $LAST_PUSH_ENTRY &> /dev/null 
 	    	local status=$?
 			if [ $status -ne 0 ]
 			then
