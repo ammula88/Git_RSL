@@ -11,6 +11,6 @@ The users can create a Git alias to our git-securefetch and git-securepush bash 
 the following commands.
 
 
- git config –global alias.securefetch ’<git-securefetch script path>’
+ git config –global alias.securefetch ’< git-securefetch script path >’
  
- git config –global alias.securepush ’<git-securepush script path>’
+ git config –global alias.securepush ’< git-securepush script path >’
