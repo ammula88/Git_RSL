@@ -6,8 +6,7 @@ Set Up Instructions:
  
 1. Git custom commands
 
-To implement these custom commands, users must name these scripts as git-<command name> and they have to add the path of these scripts in their local
-PATH environment variable.
+To implement these custom commands, users must name these scripts as git-<command name> and they have to add the path of these scripts in their local PATH environment variable.
 
 2. Git alias
 
