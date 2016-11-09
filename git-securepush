@@ -114,7 +114,7 @@ function sign_bsl {
 		LAST_ENTRY=$(ls -1|grep -v 'bsl.tmp' |wc -l)
 		BSL=$(($LAST_ENTRY+1))
 		#Signthe bsl
-		cat bsl.tmp |gpg --default-key 7A28992A --clearsign >$BSL
+		cat bsl.tmp |gpg --default-key $GPG_KEY --clearsign >$BSL
 
 		#Remove temp file
 		rm bsl.tmp
