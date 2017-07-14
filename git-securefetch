@@ -32,10 +32,10 @@ function push_bsl {
 }
 
 
-#This function intializes the bsl branch and creates bsl file intial entries
+#This function initializes the bsl branch and creates bsl file initial entries
 function bsl_init {
 
-    #Set init variabe
+    #Set init variable
     init=1
     git checkout -q --orphan bsl
     git rm -qrf .
@@ -45,7 +45,7 @@ function bsl_init {
     rm bsl.tmp
     # Commit the new BSL
     git add 1
-    git commit -S -qm "Commiting the changes at BSL"
+    git commit -S -qm "Committing the changes at BSL"
 
 }
 
@@ -110,7 +110,7 @@ function bsl_verify {
         echo "BSL file corrupted"
     fi
 
-    #verify the signature on last enry
+    #verify the signature on last entry
     LAST_ENTRY=$(ls -lrt|wc -l)
 
 
@@ -200,7 +200,7 @@ function bsl_verify {
 
         if [[ "$HASH_2" != "$HASH_1" && ! -z "$HASH_1" ]]
         then
-            echo "Hash verfication on the following entry failed"
+            echo "Hash verification on the following entry failed"
             echo "HASH_1:"$HASH_1 "  HASH_2":$HASH_2
             echo `cat hash_file.tmp`
             exit 1
@@ -222,7 +222,7 @@ function bsl_verify {
 #************************************************************************************
 
 
-#Get Current Brach
+#Get Current Branch
 CURRENT_BRANCH=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
 
 #check if we are pushing bsl branch
@@ -251,8 +251,8 @@ do
         echo "Updating the bsl ..."
         update_bsl_fetch
     else
-        # BSL branch Intialization
-        echo "Intializing the bsl ..."
+        # BSL branch Initialization
+        echo "Initializing the bsl ..."
         bsl_init
 
     fi

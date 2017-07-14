@@ -29,7 +29,7 @@ function update_bsl_push {
         fi
     done
 
-    #Caluculating the HASH
+    #Calculating the Hash
     LAST_ENTRY=$(ls -1|grep -v 'bsl.tmp' |wc -l)
     if [ -f $LAST_PUSH_ENTRY ]
     then
@@ -47,7 +47,7 @@ function update_bsl_push {
     HASH=`cat hash_file.tmp|shasum | cut -d' ' -f1`
     rm hash_file.tmp
 
-    #Updte bsl
+    #Update bsl
     echo "Related Commits" >bsl.tmp
     echo $commits >>bsl.tmp
     echo "Branch:"$CURRENT_BRANCH >>bsl.tmp
@@ -67,10 +67,10 @@ function update_bsl_fetch {
     git commit -S -qm "Adding the fetch entry at BSL"
 }
 
-#This function intializes the bsl branch and creates bsl file intial entries
+#This function initializes the bsl branch and creates bsl file initial entries
 function bsl_init {
 
-    #Set init variabe
+    #Set init variable
     init=1
     commits=`git rev-list $CURRENT_BRANCH`
     git checkout -q --orphan bsl
@@ -113,7 +113,7 @@ function sign_bsl {
 
     LAST_ENTRY=$(ls -1|grep -v 'bsl.tmp' |wc -l)
     BSL=$(($LAST_ENTRY+1))
-    #Signthe bsl
+    #Sign the bsl
     cat bsl.tmp |gpg --default-key $GPG_KEY --clearsign >$BSL
 
     #Remove temp file
@@ -134,7 +134,7 @@ function push_bsl {
 
 }
 
-#This funtion pushes the branch to server
+#This function pushes the branch to server
 function push_branch {
 
     git checkout -q $CURRENT_BRANCH
@@ -152,7 +152,7 @@ function bsl_verify {
         echo "BSL file corrupted"
     fi
 
-    #verify the signature on last enry
+    #verify the signature on last entry
     LAST_ENTRY=$(ls -lrt|wc -l)
 
 
@@ -242,7 +242,7 @@ function bsl_verify {
 
         if [[ "$HASH_2" != "$HASH_1" && ! -z "$HASH_1" ]]
         then
-            echo "Hash verfication on the following entry failed"
+            echo "Hash verification on the following entry failed"
             echo "HASH_1:"$HASH_1 "  HASH_2":$HASH_2
             echo `cat hash_file.tmp`
             exit 1
@@ -268,7 +268,7 @@ function bsl_verify {
 
 
 
-#Get Current Brach
+#Get Current Branch
 CURRENT_BRANCH=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
 
 #check if we are pushing bsl branch
@@ -284,12 +284,12 @@ then
     echo "Updating the bsl ..."
     update_bsl_push
 else
-    # BSL branch Intialization
-    echo "Intializing the bsl ..."
+    # BSL branch Initialization
+    echo "Initializing the bsl ..."
     bsl_init
 fi
 #Signing the bsl
-echo "Signing and Commiting the bsl ..."
+echo "Signing and Committing the bsl ..."
 sign_bsl
 
 #Push BSL
@@ -328,7 +328,7 @@ do
         echo "Pushing the bsl"
         push_bsl
     else
-        echo $CURRENT_BRANCH "Cann't be pushed to remote. Please fetch an merge the changes then retry the fetch"
+        echo $CURRENT_BRANCH "Can't be pushed to remote. Please fetch an merge the changes then retry the fetch"
         git checkout -q $CURRENT_BRANCH
         exit 1
     fi
